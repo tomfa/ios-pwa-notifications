@@ -1,0 +1,22 @@
+{
+  "name": "Notification app",
+  "short_name": "Notifs",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#1f2937",
+  "orientation": "portrait",
+  "description": "Notifications made easy.",
+  "icons": [{
+    "src": "img/logo_144.png",
+    "sizes": "144x144"
+  },{
+    "src": "img/logo_512.png",
+    "sizes": "512x512"
+  }, {
+    "src": "img/logo.svg",
+    "sizes": "48x48 72x72 96x96 128x128 256x256"
+  }],
+  "related_applications": [{
+    "platform": "web"
+  }]
+}
