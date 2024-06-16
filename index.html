@@ -1,82 +1,148 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="manifest" href="/manifest.json" />
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="manifest" href="/manifest.json" />
     <meta name="mobile-web-app-capable" content="yes" />
-	<link rel="icon" sizes="144x144" href="/img/logo_144.png" />
-	<title>
-	  iOS 16.4+ PWA push notifications
-	</title>
-	<script src="https://cdn.tailwindcss.com"></script>
-	<script src="./main.js"></script>
-</head>
-<body class="p-6">
-	<h2 class="text-lg mb-1">PWA</h2>
-	<div class="flex items-center gap-1">
-    	<input class="h-5 w-5" onclick="event.preventDefault()" type="checkbox" id="pwa" name="pwa" />
-    	<label for="pwa">Installed as PWA</label>
-  	</div>
+    <link rel="icon" sizes="144x144" href="/img/logo_144.png" />
+    <title>iOS 16.4+ PWA push notifications</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./main.js"></script>
+  </head>
+  <body class="p-6">
+    <h2 class="text-lg mb-1">PWA</h2>
+    <div class="flex items-center gap-1">
+      <input
+        class="h-5 w-5"
+        onclick="event.preventDefault()"
+        type="checkbox"
+        id="pwa"
+        name="pwa"
+      />
+      <label for="pwa">Installed as PWA</label>
+    </div>
 
-  	<h2 class="mt-4 mb-1 text-lg">Service worker</h2>
-  	<div class="flex items-center gap-1">
-    	<input class="h-5 w-5" type="checkbox" id="sw-supported" name="sw-supported" onclick="event.preventDefault()" />
-    	<label for="sw-supported">Service worker: supported</label>
-  	</div>
-  	<div class="flex items-center gap-1 mb-2">
-    	<input class="h-5 w-5" type="checkbox" id="sw-installed" name="sw-installed" onclick="event.preventDefault()" />
-    	<label for="sw-installed">Service worker: installed</label>
-  	</div>
+    <h2 class="mt-4 mb-1 text-lg">Service worker</h2>
+    <div class="flex items-center gap-1">
+      <input
+        class="h-5 w-5"
+        type="checkbox"
+        id="sw-supported"
+        name="sw-supported"
+        onclick="event.preventDefault()"
+      />
+      <label for="sw-supported">Service worker: supported</label>
+    </div>
+    <div class="flex items-center gap-1 mb-2">
+      <input
+        class="h-5 w-5"
+        type="checkbox"
+        id="sw-installed"
+        name="sw-installed"
+        onclick="event.preventDefault()"
+      />
+      <label for="sw-installed">Service worker: installed</label>
+    </div>
 
-  	<h2 class="mt-4 mb-1 text-lg">Notifications</h2>
+    <h2 class="mt-4 mb-1 text-lg">Notifications</h2>
 
-  	<div class="flex items-center gap-1">
-    	<input class="h-5 w-5" onclick="event.preventDefault()" type="checkbox" id="notifications-supported" name="notifications-supported" />
-    	<label for="notifications-supported">Notifications: supported</label>
-  	</div>
+    <div class="flex items-center gap-1">
+      <input
+        class="h-5 w-5"
+        onclick="event.preventDefault()"
+        type="checkbox"
+        id="notifications-supported"
+        name="notifications-supported"
+      />
+      <label for="notifications-supported">Notifications: supported</label>
+    </div>
 
-  	<div class="flex flex-col gap-1 items-start">
-  		<div class="flex items-center gap-1">
-    		<input class="h-5 w-5" onclick="event.preventDefault()" type="checkbox" id="notifications-allowed" name="notifications-allowed" />
-    		<label for="notifications-allowed">Notifications: allowed</label>
-    	</div>
-    	<button class="px-4 mb-2 py-1 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-gray-200 text-primary-foreground shadow hover:bg-gray-200/90" id="request-notification-access" id="request-notification-perm">Request notification access</button>
-  	</div>
+    <div class="flex flex-col gap-1 items-start">
+      <div class="flex items-center gap-1">
+        <input
+          class="h-5 w-5"
+          onclick="event.preventDefault()"
+          type="checkbox"
+          id="notifications-allowed"
+          name="notifications-allowed"
+        />
+        <label for="notifications-allowed">Notifications: allowed</label>
+      </div>
+      <button
+        class="px-4 mb-2 py-1 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-gray-200 text-primary-foreground shadow hover:bg-gray-200/90"
+        id="request-notification-access"
+        id="request-notification-perm"
+      >
+        Request notification access
+      </button>
+    </div>
 
-  	<h2 class="mt-4 mb-1 text-lg">Testing</h2>
+    <h2 class="mt-4 mb-1 text-lg">Testing</h2>
 
-  	<div class="flex flex-col items-start">
-  		<button class="px-4 mb-2 py-1 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-gray-200 text-primary-foreground shadow hover:bg-gray-200/90" id="test-notification">Test immediate notification</button>
-  		<button class="px-4 mb-2 py-1 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-gray-200 text-primary-foreground shadow hover:bg-gray-200/90" id="test-notification-delayed">Test 5 sec delayed notification</button>
-  	</div>
+    <div class="flex flex-col items-start">
+      <button
+        class="px-4 mb-2 py-1 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-gray-200 text-primary-foreground shadow hover:bg-gray-200/90"
+        id="test-notification"
+      >
+        Test immediate notification
+      </button>
+      <button
+        class="px-4 mb-2 py-1 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-gray-200 text-primary-foreground shadow hover:bg-gray-200/90"
+        id="test-notification-delayed"
+      >
+        Test 5 sec delayed notification
+      </button>
+    </div>
 
+    <a
+      href="https://github.com/tomfa/ios-pwa-notifications"
+      class="px-4 mb-2 py-1 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-gray-800 text-primary-foreground shadow hover:bg-gray-800/90 mt-12 text-white"
+      ><span class="text-sm">Code in Github</span></a
+    >
+  </body>
+  <script>
+    (() => {
+      registerServiceWorker().then(() => {
+        document.querySelector("#sw-installed").setAttribute("checked", true);
+      });
+      document
+        .querySelector("#sw-supported")
+        .setAttribute("checked", serviceWorkerSupported);
+      document.querySelector("#pwa").setAttribute("checked", isInstalledAsPWA);
+      document
+        .querySelector("#notifications-supported")
+        .setAttribute("checked", notificationsSupported);
+      if (hasNotificationPermission()) {
+        document
+          .querySelector("#notifications-allowed")
+          .setAttribute("checked", true);
+      }
 
-  	<a href="https://github.com/tomfa/ios-pwa-notifications" class="px-4 mb-2 py-1 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-gray-800 text-primary-foreground shadow hover:bg-gray-800/90 mt-12 text-white"><span class="text-sm">Code in Github</span></a>
-</body>
-<script>
-	(() => {
-		registerServiceWorker().then(() => {
-			document.querySelector('#sw-installed').setAttribute('checked', true);
-		});
-		document.querySelector('#sw-supported').setAttribute('checked', serviceWorkerSupported);
-		document.querySelector('#pwa').setAttribute('checked', isInstalledAsPWA);
-		document.querySelector('#notifications-supported').setAttribute('checked', notificationsSupported);
-		if (hasNotificationPermission()) {
-			document.querySelector('#notifications-allowed').setAttribute('checked', true);
-		}
+      document
+        .getElementById("test-notification")
+        .addEventListener("click", () => {
+          showNotification({ title: "Test", body: "Content in body" });
+        });
 
-		document.getElementById("test-notification").addEventListener('click', () => { showNotification({ title: "Test", body: "Content in body" })});
-		
-		document.getElementById("test-notification-delayed").addEventListener('click', () => { 
-			setTimeout(
-				() => showNotification({ title: "Delayed test", body: "Content in body" }), 5000);
-		});
+      document
+        .getElementById("test-notification-delayed")
+        .addEventListener("click", () => {
+          setTimeout(
+            () =>
+              showNotification({
+                title: "Delayed test",
+                body: "Content in body",
+              }),
+            5000,
+          );
+        });
 
-		document.getElementById("request-notification-perm").addEventListener('click', () => { 
-			requestNotificationPermission().then(() => location.reload())
-		});
-
-	})()
-</script>
+      document
+        .getElementById("request-notification-perm")
+        .addEventListener("click", () => {
+          requestNotificationPermission().then(() => location.reload());
+        });
+    })();
+  </script>
 </html>

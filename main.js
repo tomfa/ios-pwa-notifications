@@ -15,20 +15,22 @@
   - https://github.com/mdn/browser-compat-data/issues/19318
 */
 
-const isInstalledAsPWA = typeof window !== 'undefined' &&
-  !!window.matchMedia('(display-mode: standalone)').matches;
+const isInstalledAsPWA =
+  typeof window !== "undefined" &&
+  !!window.matchMedia("(display-mode: standalone)").matches;
 
 const serviceWorkerSupported =
-  typeof navigator !== "undefined" &&
-  "serviceWorker" in navigator;
+  typeof navigator !== "undefined" && "serviceWorker" in navigator;
 
 const notificationsSupported = typeof Notification !== "undefined";
 
 let worker = null;
-if (serviceWorkerSupported) { 
+if (serviceWorkerSupported) {
   navigator.serviceWorker.ready
-    .then(w => { worker = w })
-    .catch(err => console.error(err));
+    .then((w) => {
+      worker = w;
+    })
+    .catch((err) => console.error(err));
 }
 
 const registerServiceWorker = () => {
@@ -36,13 +38,15 @@ const registerServiceWorker = () => {
     return null;
   }
   if (worker) {
-    return worker
+    return worker;
   }
   return navigator.serviceWorker.register("./sw.js");
-}
+};
 
-const requestNotificationPermission = () => notificationsSupported && Notification.requestPermission();
-const hasNotificationPermission = () => notificationsSupported && Notification.permission === "granted";
+const requestNotificationPermission = () =>
+  notificationsSupported && Notification.requestPermission();
+const hasNotificationPermission = () =>
+  notificationsSupported && Notification.permission === "granted";
 
 /**
  * Show notification.
@@ -56,23 +60,25 @@ const showNotification = async ({ title, body }) => {
     console.error(`May have to install as PWA first`);
   }
   if (!serviceWorkerSupported || !notificationsSupported) {
-    console.error(`Not supported in your browser`)
+    console.error(`Not supported in your browser`);
     return;
   }
   if (!hasNotificationPermission) {
-    console.error(`Have no permission to send notifications. Will attempt to request.`);
+    console.error(
+      `Have no permission to send notifications. Will attempt to request.`,
+    );
     await requestNotificationPermission();
   }
   const sw = await registerServiceWorker();
   if (!sw) {
-    console.error('Unable to register service worker');
+    console.error("Unable to register service worker");
     return;
   }
   await sw.showNotification(title, body ? { body } : undefined);
-}
+};
 
 // sendEventToServiceWorker function below is unrelated to
 //   notifications, but sends message to the dummy event handler in sw.js
 const sendEventToServiceWorker = (data) => {
   postMessage(data);
-}
+};
