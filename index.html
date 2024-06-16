@@ -106,13 +106,20 @@
       registerServiceWorker().then(() => {
         document.querySelector("#sw-installed").setAttribute("checked", true);
       });
-      document
-        .querySelector("#sw-supported")
-        .setAttribute("checked", serviceWorkerSupported);
-      document.querySelector("#pwa").setAttribute("checked", isInstalledAsPWA);
-      document
-        .querySelector("#notifications-supported")
-        .setAttribute("checked", notificationsSupported);
+      if (serviceWorkerSupported) {
+        document
+          .querySelector("#sw-supported")
+          .setAttribute("checked", serviceWorkerSupported);
+      }
+      if (isInstalledAsPWA) {
+        document.querySelector("#pwa").setAttribute("checked", true);
+      }
+
+      if (notificationsSupported) {
+        document
+          .querySelector("#notifications-supported")
+          .setAttribute("checked", true);
+      }
       if (hasNotificationPermission()) {
         document
           .querySelector("#notifications-allowed")
