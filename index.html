@@ -70,7 +70,7 @@
         <label for="notifications-allowed">Notifications: allowed</label>
       </div>
       <button
-        class="px-4 mb-2 py-1 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-gray-200 text-primary-foreground shadow hover:bg-gray-200/90"
+        class="px-4 mb-2 py-1 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-gray-200 text-primary-foreground shadow hover:bg-gray-200/90 hidden"
         id="request-notification-access"
       >
         Request notification access
@@ -124,6 +124,10 @@
         document
           .querySelector("#notifications-allowed")
           .setAttribute("checked", true);
+      } else {
+        document
+          .querySelector("#request-notification-access")
+          .classList.remove("hidden");
       }
 
       document
