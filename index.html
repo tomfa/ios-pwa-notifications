@@ -72,7 +72,6 @@
       <button
         class="px-4 mb-2 py-1 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-gray-200 text-primary-foreground shadow hover:bg-gray-200/90"
         id="request-notification-access"
-        id="request-notification-perm"
       >
         Request notification access
       </button>
@@ -120,6 +119,7 @@
           .querySelector("#notifications-supported")
           .setAttribute("checked", true);
       }
+
       if (hasNotificationPermission()) {
         document
           .querySelector("#notifications-allowed")
@@ -146,7 +146,7 @@
         });
 
       document
-        .getElementById("request-notification-perm")
+        .getElementById("request-notification-access")
         .addEventListener("click", () => {
           requestNotificationPermission().then(() => location.reload());
         });
