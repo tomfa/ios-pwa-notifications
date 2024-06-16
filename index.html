@@ -41,7 +41,7 @@
     		<input class="h-5 w-5" onclick="event.preventDefault()" type="checkbox" id="notifications-allowed" name="notifications-allowed" />
     		<label for="notifications-allowed">Notifications: allowed</label>
     	</div>
-    	<button class="px-4 mb-2 py-1 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-gray-200 text-primary-foreground shadow hover:bg-gray-200/90" id="request-notification-access" onClick="requestNotificationPermission()">Request notification access</button>
+    	<button class="px-4 mb-2 py-1 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-gray-200 text-primary-foreground shadow hover:bg-gray-200/90" id="request-notification-access" id="request-notification-perm">Request notification access</button>
   	</div>
 
   	<h2 class="mt-4 mb-1 text-lg">Testing</h2>
@@ -71,6 +71,10 @@
 		document.getElementById("test-notification-delayed").addEventListener('click', () => { 
 			setTimeout(
 				() => showNotification({ title: "Delayed test", body: "Content in body" }), 5000);
+		});
+
+		document.getElementById("request-notification-perm").addEventListener('click', () => { 
+			requestNotificationPermission().then(() => location.reload())
 		});
 
 	})()
