@@ -15,7 +15,7 @@
 <body class="p-6">
 	<h2 class="text-lg mb-1">PWA</h2>
 	<div class="flex items-center gap-1">
-    	<input class="h-5 w-5"onclick="event.preventDefault()" type="checkbox" id="pwa" name="pwa" />
+    	<input class="h-5 w-5" onclick="event.preventDefault()" type="checkbox" id="pwa" name="pwa" />
     	<label for="pwa">Installed as PWA</label>
   	</div>
 
@@ -60,6 +60,7 @@
 			document.querySelector('#sw-installed').setAttribute('checked', true);
 		});
 		document.querySelector('#sw-supported').setAttribute('checked', serviceWorkerSupported);
+		document.querySelector('#pwa').setAttribute('checked', isInstalledAsPWA);
 		document.querySelector('#notifications-supported').setAttribute('checked', notificationsSupported);
 		if (hasNotificationPermission()) {
 			document.querySelector('#notifications-allowed').setAttribute('checked', true);
