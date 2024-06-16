@@ -38,7 +38,7 @@ const registerServiceWorker = () => {
   if (worker) {
     return worker
   }
-  return navigator.serviceWorker.register("/sw.js");
+  return navigator.serviceWorker.register("./sw.js");
 }
 
 const requestNotificationPermission = () => notificationsSupported && Notification.requestPermission();
